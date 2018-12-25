@@ -1,0 +1,41 @@
+<!-- upload.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>アップロード サンプル</h1>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% if form.errors %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ error|escape }}</strong>
+                </div>
+            {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    {% for field in form %}
+    <div class="form-group form-inline">
+        <div class="col-md-8">
+            {{ field }}
+        </div>
+    </div>
+    {% endfor %}
+    <div class="form-group">
+        <button type="submit">アップロード</button>
+    </div>
+</form>
+
+    <section>
+        <p><a href="javascript:history.back()">&lt; Back</a></p>
+    </section>
+
+{% endblock %}

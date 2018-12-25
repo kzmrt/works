@@ -1,0 +1,39 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+        <title>{% if request.path != '/' %}{% block title %}{% endblock %} | {% endif %}My ポートフォリオ</title>
+    </head>
+    <body>
+    <div class="container">
+        <header>
+            <p class="site-name"><a href="{% url 'pictures:index' %}">作品ポートフォリオ</a></p>
+            <nav>
+            <ul>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}" class="logout">ログアウト</a></li>
+                    {% if work_pk %}
+                        <li><a href="{% url 'pictures:detail' work_pk %}">作品詳細</a></li>
+                        <li><a href="{% url 'pictures:upload' work_pk %}">ファイルアップロード</a></li>
+                    {% else %}
+                        <li><a href="{% url 'pictures:index' %}">作品一覧</a></li>
+                    {% endif %}
+                {% else %}
+                    <li><a href="{% url 'login' %}" class="login">ログイン</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+        </header>
+        <div class="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+    </body>
+</html>

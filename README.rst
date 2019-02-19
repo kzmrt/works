@@ -10,9 +10,9 @@ Requirement
 ===========
 
 :Python: 3.7.0
-:Django: 2.1.4
-:Pillow: 5.3.0
-:pytz: 2018.7
+:Django: 2.1.7
+:Pillow: 5.4.1
+:pytz: 2018.9
 
 
 Quick start

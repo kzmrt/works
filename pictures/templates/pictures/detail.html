@@ -6,6 +6,12 @@
         {{ object.memo|linebreaksbr }}
     </section>
 
+    <!-- テンプレート読み込み -->
+    {% with pk=object.pk|slugify %}
+        {% with template="pictures/"|add:pk|add:"/test.html" %}
+            {% include template %}
+        {% endwith %}
+    {% endwith %}
 
     <section>
         <p><a href="javascript:history.back()">&lt; Back</a></p>
